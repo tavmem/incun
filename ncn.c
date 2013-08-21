@@ -20,7 +20,7 @@ A id(A w){R w;}
 A size(A w){A z=ga(0,0,0);*z->p=w->r?*w->d:1;R z;}
 V pi(I i){P("%ld ",i);}nl(){P("\n");}
 V pr(A w){I r=w->r,*d=w->d,n=tr(r,d);DO(r,pi(d[i]));nl();
-  if(w->t)DO(n,P("< ");pr((V*)(w->p[i])))else DO(n,pi(w->p[i]));nl();}
+  if(w->t)DO(n,P("< ");pr((A)(w->p[i])))else DO(n,pi(w->p[i]));nl();}
 
 A (*vd[])()={0,plus,from,find,0,rsh,cat},
   (*vm[])()={0,id,size,iota,box,sha,0}; 
