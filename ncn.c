@@ -25,7 +25,8 @@ V pr(A w){I r=w->r,*d=w->d,n=tr(r,d);DO(r,pi(d[i]));nl();
 
 A (*vd[])()={0,plus,from,find,0,rsh,cat},
   (*vm[])()={0,id,size,iota,box,sha,0}; 
-I qp(I a){R  a>='a'&&a<='z';}qv(a){R a<'a';}
+I qp(I a){R  a>='a'&&a<='z';}
+I qv(I a){R a<'a';}
 C vt[]="+{~<#,"; I st[26];
 A ex(I *e){I a=*e;
   if(qp(a)){if(e[1]=='=')R(V*)(st[a-'a']=(I)ex(e+2));a= st[ a-'a'];}
