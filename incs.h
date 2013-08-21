@@ -3,7 +3,7 @@
 #include <string.h>  // strlen
 typedef char C;
 typedef long I;
-typedef void* V;
+typedef void V;
 typedef struct a{I t,r,d[3],p[2];}*A;
 #define P printf
 #define R return

@@ -1,8 +1,7 @@
 #include "incs.h"
-
 I *ma(I n){R(I*)malloc(n*4);}
-mv(I*d,I*s,I n){DO(n,d[i]=s[i]);}
-tr(I r,I*d){I z=1;DO(r,z=z*d[i]);R z;}
+V mv(I*d,I*s,I n){DO(n,d[i]=s[i]);}
+I tr(I r,I*d){I z=1;DO(r,z=z*d[i]);R z;}
 A ga(I t,I r,I*d){A z=(A)ma(5+tr(r,d));z->t=t,z->r=r,mv(z->d,d,r);R z;}
 A iota(A w){I n=*w->p;A z=ga(0,1,&n);DO(n,z->p[i]=i);R z;}
 A plus(A a, A w){I r=w->r,*d=w->d,n=tr(r,d);A z=ga(0,r,d);
@@ -19,19 +18,16 @@ A rsh(A a,A w){I r=a->r?*a->d:1,n=tr(r,a->p),wn=tr(w->r,w->d);
 A sha(A w){A z=ga(0,1,&w->r);mv(z->p,w->d,w->r);R z;}
 A id(A w){R w;}
 A size(A w){A z=ga(0,0,0);*z->p=w->r?*w->d:1;R z;}
-pi(I i){P("%ld ",i);}nl(){P("\n");}
-pr(w)A w;{I r=w->r,*d=w->d,n=tr(r,d);DO(r,pi(d[i]));nl();
-  if(w->t)DO(n,P("< ");pr(w->p[i]))else DO(n,pi(w->p[i]));nl();}
+V pi(I i){P("%ld ",i);}nl(){P("\n");}
+V pr(A w){I r=w->r,*d=w->d,n=tr(r,d);DO(r,pi(d[i]));nl();
+  if(w->t)DO(n,P("< ");pr((V*)(w->p[i])))else DO(n,pi(w->p[i]));nl();}
 
-C vt[]="+{~<#,";
-A(*vd[])()={0,plus,from,find,0,rsh,cat},
-  (*vm[])()={0,id,size,iota,box,sha,0};
-I st[26]; 
+A (*vd[])()={0,plus,from,find,0,rsh,cat},
+  (*vm[])()={0,id,size,iota,box,sha,0}; 
 I qp(I a){R  a>='a'&&a<='z';}qv(a){R a<'a';}
+C vt[]="+{~<#,"; I st[26];
 A ex(I *e){I a=*e;
-  if(qp(a)){
-    if(e[1]=='=')R(V)(st[a-'a']=(I)ex(e+2));
-    a= st[ a-'a'];}
+  if(qp(a)){if(e[1]=='=')R(V*)(st[a-'a']=(I)ex(e+2));a= st[ a-'a'];}
   R qv(a)?(*vm[a])(ex(e+1)):e[1]?(*vd[e[1]])(a,ex(e+2)):(A)a;}
 I noun(C c){A z;if(c<'0'||c>'9')R 0;z=ga(0,0,0);*z->p=c-'0';R(I)z;}
 I verb(C c){I i=0;for(;vt[i];)if(vt[i++]==c)R i;R 0;}
