@@ -28,12 +28,21 @@ A (*vd[])()={0,plus,from,find,0,rsh,cat},
 I qp(I a){R  a>='a'&&a<='z';}
 I qv(I a){R a<'a';}
 C vt[]="+{~<#,"; I st[26];
-A ex(I *e){I a=*e;
-  if(qp(a)){if(e[1]=='=')R(V*)(st[a-'a']=(I)ex(e+2));a= st[ a-'a'];}
+A ex(I *e){
+  I a=*e;
+  O("qp(a): %ld\n",qp(a));
+  if(qp(a)){
+    if(e[1]=='=')R(V*)(st[a-'a']=(I)ex(e+2));
+    a= st[ a-'a'];}
+  O("qv(a): %ld\n",qv(a));
   R qv(a)?(*vm[a])(ex(e+1)):e[1]?(*vd[e[1]])(a,ex(e+2)):(A)a;}
 I noun(C c){A z;if(c<'0'||c>'9')R 0;z=ga(0,0,0);*z->p=c-'0';R(I)z;}
 I verb(C c){I i=0;for(;vt[i];)if(vt[i++]==c)R i;R 0;}
-I *wd(C *s){I a,n=strlen(s),*e=ma(n+1);C c;
-  DO(n,e[i]=(a=noun(c=s[i]))?a:(a=verb(c))?a:c);e[n]=0;R e;}
+I *wd(C *s){
+  I a,n=strlen(s),*e=ma(n+1);
+  O("strlen: %ld\n",n);
+  C c;
+  DO(n,e[i]=(a=noun(c=s[i]))?a:(a=verb(c))?a:c);e[n]=0;
+  R e;}
 
 int main(){C s[99];while(gets(s))pr(ex(wd(s)));R 0;}
