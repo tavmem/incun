@@ -22,8 +22,8 @@ V pi(I i){O("%ld ",i);}
 V nl(){O("\n");}
 V pr(A w){I r=w->r,*d=w->d,n=tr(r,d);
   DO(r,pi(d[i])); nl();
-  if(w->t)DO(n,O("< ");
-  pr((A)(w->p[i])))else DO(n,pi(w->p[i])); nl();}
+  if(w->t)DO(n,O("< ");pr((A)(w->p[i])))
+  else DO(n,pi(w->p[i])); nl();}
 
 A (*vd[])()={0,plus,from,find,0,rsh,cat},
   (*vm[])()={0,id,size,iota,box,sha,0}; 
