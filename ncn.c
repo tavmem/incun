@@ -71,7 +71,16 @@ I *wd(C *s){
   O("strlen: %ld\n",n);
   C c;
   O("noun(s[0]): %ld\n",noun(s[0]));
-  DO(n,e[i]=(a=noun(c=s[i]))?a:(a=verb(c))?a:c);e[n]=0;
+  //DO(n,e[i]=(a=noun(c=s[i]))?a:(a=verb(c))?a:c);
+  I i=0,_n=(n);
+  for(;i<_n;++i){
+   c=s[i];
+   //e[i]=(a=noun(c))?a:(a=verb(c))?a:c;}
+   if(a=noun(c)) {e[i]=a; O("have a noun *****\n");}
+   else if(a=verb(c)) {e[i]=a; O("have a verb *****\n");}
+        else {e[i]=c; O("have neither *****\n");}}
+
+  e[n]=0;
   O("e, *e: %p %ld\n",e,*e);
   R e;}
 
