@@ -39,15 +39,23 @@ A id(A w){R w;}
 A size(A w){A z=ga(0,0,0);*z->p=w->r?*w->d:1;R z;}
 V pi(I i){O("%ld ",i);}
 V nl(){O("\n");}
-V pr(A w){I r=w->r,*d=w->d,n=tr(r,d);DO(r,pi(d[i]));nl();
-  if(w->t)DO(n,O("< ");pr((A)(w->p[i])))else DO(n,pi(w->p[i]));nl();}
-
+V pr(A w){
+  O("pr: w: %p\n",w);
+  O("pr: w->r: %ld\n",w->r);
+  O("pr: w->d: %ld\n",w->d);
+  I r=w->r,*d=w->d,n=tr(r,d);
+  DO(r,pi(d[i]));
+  nl();
+  if(w->t)DO(n,O("< ");
+  pr((A)(w->p[i])))else DO(n,pi(w->p[i]));
+  nl();}
 A (*vd[])()={0,plus,from,find,0,rsh,cat},
   (*vm[])()={0,id,size,iota,box,sha,0}; 
 I qp(I a){
   O("qp: a,'a','z': %ld %d %d\n",a,'a','z');
   R  a>='a'&&a<='z';}
 I qv(I a){
+  a=labs(a);
   O("qv: a,'a': %ld %d\n",a,'a');
   R a<'a';}
 C vt[]="+{~<#,"; I st[26];
@@ -69,7 +77,7 @@ I noun(C c){
   z=ga(0,0,0);
   *z->p=c-'0';
   O("noun: z (I)z: %p %ld\n",z,(I)z);
-  R labs((I)z);}
+  R (I)z;}
 I verb(C c){I i=0;for(;vt[i];)if(vt[i++]==c)R i;R 0;}
 I *wd(C *s){
   I a,n=strlen(s),*e=ma(n+1);
