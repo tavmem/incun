@@ -44,19 +44,24 @@ V pr(A w){I r=w->r,*d=w->d,n=tr(r,d);DO(r,pi(d[i]));nl();
 
 A (*vd[])()={0,plus,from,find,0,rsh,cat},
   (*vm[])()={0,id,size,iota,box,sha,0}; 
-I qp(I a){R  a>='a'&&a<='z';}
+I qp(I a){
+  O("qp: a,'a','z': %ld %d %d\n",a,'a','z');
+  R  a>='a'&&a<='z';}
 I qv(I a){
-  O("a,'a': %ld %d\n",a,'a');
+  O("qv: a,'a': %ld %d\n",a,'a');
   R a<'a';}
 C vt[]="+{~<#,"; I st[26];
 A ex(I *e){
   I a=*e;
-  O("qp(a): %ld\n",qp(a));
+  O("ex: qp(a): %ld\n",qp(a));
   if(qp(a)){
     if(e[1]=='=')R(V*)(st[a-'a']=(I)ex(e+2));
     a= st[ a-'a'];}
-  O("qv(a): %ld\n",qv(a));
-  R qv(a)?(*vm[a])(ex(e+1)):e[1]?(*vd[e[1]])(a,ex(e+2)):(A)a;}
+  O("ex: qv(a): %ld\n",qv(a));
+  //R qv(a)?(*vm[a])(ex(e+1)):e[1]?(*vd[e[1]])(a,ex(e+2)):(A)a;}
+  if(qv(a)) {O("--monadic\n"); R(*vm[a])(ex(e+1));}
+  else if(e[1]) {O("--dyadic\n"); R(*vd[e[1]])(a,ex(e+2));}
+       else {O("--noun\n"); R(A)a;}}
 I noun(C c){
   O("c: %d\n",c);
   A z;
@@ -72,14 +77,13 @@ I *wd(C *s){
   C c;
   O("noun(s[0]): %ld\n",noun(s[0]));
   //DO(n,e[i]=(a=noun(c=s[i]))?a:(a=verb(c))?a:c);
-  I i=0,_n=(n);
-  for(;i<_n;++i){
-   c=s[i];
-   //e[i]=(a=noun(c))?a:(a=verb(c))?a:c;}
-   if(a=noun(c)) {e[i]=a; O("have a noun *****\n");}
-   else if(a=verb(c)) {e[i]=a; O("have a verb *****\n");}
-        else {e[i]=c; O("have neither *****\n");}}
-
+    I i=0,_n=(n);
+    for(;i<_n;++i){
+     c=s[i];
+     //e[i]=(a=noun(c))?a:(a=verb(c))?a:c;}
+     if(a=noun(c)) {e[i]=a; O("have a noun *****\n");}
+     else if(a=verb(c)) {e[i]=a; O("have a verb *****\n");}
+          else {e[i]=c; O("have neither *****\n");}}
   e[n]=0;
   O("e, *e: %p %ld\n",e,*e);
   R e;}
