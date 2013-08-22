@@ -69,7 +69,7 @@ I noun(C c){
   z=ga(0,0,0);
   *z->p=c-'0';
   O("noun: z (I)z: %p %ld\n",z,(I)z);
-  R(I)z;}
+  R labs((I)z);}
 I verb(C c){I i=0;for(;vt[i];)if(vt[i++]==c)R i;R 0;}
 I *wd(C *s){
   I a,n=strlen(s),*e=ma(n+1);
