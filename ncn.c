@@ -1,4 +1,4 @@
-#include "incs.h"
+#include "ncn.h"
 I *ma(I n){R(I*)malloc(n*4);}
 V mv(I*d,I*s,I n){DO(n,d[i]=s[i]);}
 I tr(I r,I*d){I z=1;DO(r,z=z*d[i]);R z;}
