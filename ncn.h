@@ -1,4 +1,4 @@
-#include <stdlib.h>  // malloc
+#include <stdlib.h>  // malloc,labs
 #include <stdio.h>   // printf
 #include <string.h>  // strlen
 typedef char C;
