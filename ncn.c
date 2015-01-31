@@ -1,4 +1,14 @@
-#include "ncn.h"
+#include <stdlib.h>  // malloc,labs
+#include <stdio.h>   // printf
+#include <string.h>  // strlen
+typedef char C;
+typedef long I;
+typedef void V;
+typedef struct a{I t,r,d[3],p[2];}*A;
+#define O printf
+#define R return
+#define DO(n,x) {I i=0,_n=(n);for(;i<_n;++i){x;}}
+
 I *ma(I n){R(I*)malloc(n*4);}
 V mv(I*d,I*s,I n){DO(n,d[i]=s[i]);}
 I tr(I r,I*d){I z=1;DO(r,z=z*d[i]);R z;}
